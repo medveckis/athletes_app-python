@@ -56,7 +56,10 @@ def remove(athlete_id):
         f.truncate()
     if is_deleted:
         injury_dir = os.path.join(cwd, "data", f"{athlete_id}_injuries.csv")
-        os.remove(injury_dir)
+        try:
+            os.remove(injury_dir)
+        except OSError:
+            pass
     return is_deleted
 
 
